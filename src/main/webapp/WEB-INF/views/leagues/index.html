@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="resources/mainstyle.css">
+    <link rel="stylesheet" type="text/css" href="resources/liststyle.css">
+    <title>Leagues</title>
+</head>
+<body>
+<div id="block-body">
+    <header>
+        <div class="top-menu">
+            <ul>
+                <li><a href="http://localhost:8080/web_lab_war_exploded2/main">Main</a></li>
+                <li><a href="http://localhost:8080/web_lab_war_exploded2/leagues">Leagues</a></li>
+                <li><a href="http://localhost:8080/web_lab_war_exploded2/clubs">Clubs</a></li>
+                <li><a href="http://localhost:8080/web_lab_war_exploded2/players">Players</a></li>
+            </ul>
+        </div>
+    </header>
+    <div id="block-content"></div>
+</div>
+<div th:each="league:${leagues}" class="rectangle">
+    <a th:href="@{/leagues/{id}(id=${league.getId()})}"
+       th:text="${league.getName()}"></a>
+</div>
+<hr/>
+<hr/>
+<a href="http://localhost:8080/web_lab_war_exploded2/leagues/new">Add league</a>
+</body>
+</html>

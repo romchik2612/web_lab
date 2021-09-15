@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="resources/mainstyle.css">
+    <title>Football</title>
+</head>
+<body>
+<div id="block-body">
+    <header>
+        <div class="top-menu">
+            <ul>
+                <li><a href="http://localhost:8080/web_lab_war_exploded2/main">Main</a></li>
+                <li><a href="http://localhost:8080/web_lab_war_exploded2/leagues">Leagues</a></li>
+                <li><a href="http://localhost:8080/web_lab_war_exploded2/clubs">Clubs</a></li>
+                <li><a href="http://localhost:8080/web_lab_war_exploded2/players">Players</a></li>
+            </ul>
+        </div>
+    </header>
+    <div id="block-content"></div>
+</div>
+<div>
+    <form th:method="PATCH"  th:object="${club}">
+        <label for="name">Enter name: </label>
+        <input type="text" th:field="*{name}" id="name"/>
+        <br/>
+        <label for="sourname">Enter sourname: </label>
+        <input type="text" th:field="*{sourname}" id="sourname"/>
+        <br/>
+        <label for="number">Enter number: </label>
+        <input type="number" th:field="*{number}" id="number"/>
+        <br/>
+        <label for="mark">Enter mark: </label>
+        <input type="number" th:field="*{mark}" id="mark"/>
+        <br/>
+        <input type="submit" value="Create"/>
+    </form>
+</div>
+</body>
+</html>

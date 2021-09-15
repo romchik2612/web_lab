@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="resources/mainstyle.css">
+    <link rel="stylesheet" type="text/css" href="resources/liststyle.css">
+    <title>Leagues</title>
+</head>
+<body>
+<div id="block-body">
+    <header>
+        <div class="top-menu">
+            <ul>
+                <li><a href="http://localhost:8080/web_lab_war_exploded2/main">Main</a></li>
+                <li><a href="http://localhost:8080/web_lab_war_exploded2/leagues">Leagues</a></li>
+                <li><a href="http://localhost:8080/web_lab_war_exploded2/clubs">Clubs</a></li>
+                <li><a href="http://localhost:8080/web_lab_war_exploded2/players">Players</a></li>
+            </ul>
+        </div>
+    </header>
+    <div id="block-content"></div>
+</div>
+<div>
+    <h3 th:text="${club.getName()}"></h3>
+    <p th:text="${'League: ' + league.getName()}"></p>
+    <p th:text="${'Points: ' + club.getPoints}"></p>
+    <p th:text="${'Year of Birth: ' + club.getYear_of_birth}"></p>
+    <p>Players: </p>
+</div>
+<div th:each="player:${players}" class="rectangle">
+    <a th:href="@{/player/{id}(id=${player.getId()})}"
+       th:text="${player.getName() + ' ' + player.getSourname()}"></a>
+</div>
+<hr/>
+<hr/>
+<div>
+    <p><a th:href="@{/players/{id}/new(id=${club.getId()})}">Add Player</a></p>
+    <p><a th:href="@{/clubs/{id}/edit(id=${club.getId()})}">Edit</a></p>
+    <form th:method="DELETE" th:action="@{/players/{id}(id=${player.getId()})}">
+        <input type="submit" value="Delete"/>
+    </form>
+</div>
+</body>
+</html>

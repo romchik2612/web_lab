@@ -20,18 +20,22 @@
     <div id="block-content"></div>
 </div>
 <div>
-    <form th:method="POST"  th:object="${club}">
+    <form th:method="POST"  th:object="${player}">
         <label for="name">Enter name: </label>
         <input type="text" th:field="*{name}" id="name"/>
+        <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</div>
         <br/>
         <label for="sourname">Enter sourname: </label>
         <input type="text" th:field="*{sourname}" id="sourname"/>
+        <div style="color: red" th:if="${#fields.hasErrors('sourname')}" th:errors="*{sourname}">Error</div>
         <br/>
         <label for="number">Enter number: </label>
         <input type="number" th:field="*{number}" id="number"/>
+        <div style="color: red" th:if="${#fields.hasErrors('number')}" th:errors="*{number}">Error</div>
         <br/>
         <label for="mark">Enter mark: </label>
-        <input type="number" th:field="*{mark}" id="mark"/>
+        <input type="number" step="0.1" th:field="*{mark}" id="mark"/>
+        <div style="color: red" th:if="${#fields.hasErrors('mark')}" th:errors="*{mark}">Error</div>
         <br/>
         <input type="submit" value="Create"/>
     </form>

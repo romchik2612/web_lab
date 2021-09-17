@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -75,4 +77,7 @@ public class SpringConfig implements WebMvcConfigurer {
     public ClubDAO clubDAO(){return new ClubDAO(jdbcTemplate());}
     @Bean
     public PlayerDAO playerDAO(){return new PlayerDAO(jdbcTemplate());}
+    @Bean
+    public StringHttpMessageConverter stringHttpMessageConverter(){return new StringHttpMessageConverter();}
+
 }

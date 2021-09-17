@@ -23,9 +23,11 @@
 <form th:method="POST"  th:object="${league}">
     <label for="name">Enter name: </label>
     <input type="text" th:field="*{name}" id="name"/>
+    <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</div>
     <br/>
     <label for="prizefond">Enter prizefond(mln): </label>
     <input type="number" th:field="*{prizefond}" id="prizefond"/>
+    <div style="color: red" th:if="${#fields.hasErrors('prizefond')}" th:errors="*{prizefond}">Error</div>
     <br/>
     <input type="submit" value="Create"/>
 </form>

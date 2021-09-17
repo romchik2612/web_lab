@@ -28,7 +28,7 @@ public class ClubDAO {
     }
 
     public Club show(int id){
-        return  jdbcTemplate.query("SELECT FROM Club WHERE id=?", new Object[]{id},new ClubMapper()).stream().findAny().orElse(null);
+        return  jdbcTemplate.query("SELECT * FROM Club WHERE id=?", new Object[]{id},new ClubMapper()).stream().findAny().orElse(null);
     }
 
     public void save(Club club){

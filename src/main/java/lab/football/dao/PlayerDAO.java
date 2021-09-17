@@ -28,7 +28,7 @@ public class PlayerDAO {
     }
 
     public Player show(int id){
-        return  jdbcTemplate.query("SELECT FROM Player WHERE id=?", new Object[]{id},new PlayerMapper()).stream().findAny().orElse(null);
+        return  jdbcTemplate.query("SELECT * FROM Player WHERE id=?", new Object[]{id},new PlayerMapper()).stream().findAny().orElse(null);
     }
 
     public void save(Player player){

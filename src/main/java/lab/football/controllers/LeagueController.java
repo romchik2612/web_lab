@@ -6,7 +6,11 @@ import lab.football.models.League;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/leagues")
@@ -18,7 +22,6 @@ public class LeagueController {
         this.leagueDAO = leagueDAO;
         this.clubDAO = clubDAO;
     }
-
 
     @GetMapping()
     private String index(Model model){
@@ -39,7 +42,8 @@ public class LeagueController {
     }
 
     @PostMapping("/new")
-    private String create(@ModelAttribute("league") League league){
+    private String create(@ModelAttribute("league") @Valid League league, BindingResult bindingResult){
+        if(bindingResult.hasErrors())return "leagues/new.html";
         leagueDAO.save(league);
         return "redirect:/leagues";
     }
@@ -49,7 +53,8 @@ public class LeagueController {
         return "leagues/edit.html";
     }
     @PatchMapping("/{id}/edit")
-    private String update(@ModelAttribute("league") League league,@PathVariable("id") int id){
+    private String update(@ModelAttribute("league") @Valid League league, BindingResult bindingResult, @PathVariable("id") int id){
+        if(bindingResult.hasErrors())return "leagues/edit.html";
         leagueDAO.update(id,league);
         return "redirect:/leagues";
     }

@@ -22,7 +22,7 @@
 </div>
 <div th:each="player:${players}" class="rectangle">
     <a th:href="@{/players/{id}(id=${player.getId()})}"
-       th:text="${player.getName()}"></a>
+       th:text="${player.getName() + ' ' + player.getSourname()}"></a>
 </div>
 <hr/>
 <hr/>

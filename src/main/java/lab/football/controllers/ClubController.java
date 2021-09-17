@@ -8,7 +8,10 @@ import lab.football.models.League;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/clubs")
@@ -41,7 +44,8 @@ public class ClubController {
     }
 
     @PostMapping("/{id}/new")
-    private String create(@ModelAttribute("club") Club club, @PathVariable("id") int league_id){
+    private String create(@ModelAttribute("club") @Valid Club club,BindingResult bindingResult, @PathVariable("id") int league_id){
+        if(bindingResult.hasErrors()) return "clubs/new.html";
         club.setLeague_id(league_id);
         clubDAO.save(club);
         return "redirect:/clubs";
@@ -52,7 +56,8 @@ public class ClubController {
         return "clubs/edit.html";
     }
     @PatchMapping("/{id}/edit")
-    private String update(@ModelAttribute("club") Club club,@PathVariable("id") int id){
+    private String update(@ModelAttribute("club") @Valid Club club, BindingResult bindingResult, @PathVariable("id") int id){
+        if(bindingResult.hasErrors())return "clubs/edit.html";
         clubDAO.update(id,club);
         return "redirect:/clubs";
     }

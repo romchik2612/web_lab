@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="jackson-databind-2.12.4">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.12.4/jackson-databind-2.12.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ideaLibSources/jackson-databind-2.12.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

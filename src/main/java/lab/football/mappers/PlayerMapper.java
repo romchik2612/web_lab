@@ -25,4 +25,19 @@ public class PlayerMapper implements RowMapper<Player> {
 
         return player;
     }
+
+    public Player fromString(String str){
+        Player player= new Player();
+        str=str.substring(str.indexOf(":")+1);
+        player.setName(str.substring(str.indexOf("\"")+1,str.indexOf(",")-1));
+        str=str.substring(str.indexOf(":"));
+        player.setSourname(str.substring(str.indexOf("\"")+1,str.indexOf(",")-1));
+        str=str.substring(str.indexOf(":"));
+        player.setNumber(Integer.parseInt(str.substring(str.indexOf("\"")+1,str.indexOf(",")-1)));
+        str=str.substring(str.indexOf(":"));
+        player.setMark(Integer.parseInt(str.substring(str.indexOf("\"")+1,str.indexOf(",")-1)));
+        str=str.substring(str.indexOf(":"));
+        player.setClub_id(Integer.parseInt(str.substring(str.indexOf("\"")+1,str.lastIndexOf("\""))));
+        return player;
+    }
 }

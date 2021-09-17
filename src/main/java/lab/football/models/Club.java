@@ -62,4 +62,15 @@ public class Club {
     public void setLeague_id(int league_id) {
         this.league_id = league_id;
     }
+
+    @Override
+    public String toString() {
+        return "Club{" + "\n" +
+                "id = " + id + "," +"\n" +
+                "name = '" + name + '\'' + "," + "\n" +
+                "year_of_birth = " + year_of_birth + "," +"\n" +
+                "points = " + points + "," + "\n" +
+                "league_id = " + league_id + "," + "\n" +
+                '}';
+    }
 }

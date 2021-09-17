@@ -25,4 +25,13 @@ public class LeagueMapper implements RowMapper<League> {
 
         return league;
     }
+
+    public League fromString(String str){
+        League league = new League();
+        str=str.substring(str.indexOf(":")+1);
+        league.setName(str.substring(str.indexOf("\"")+1,str.indexOf(",")-1));
+        str=str.substring(str.indexOf(":"));
+        league.setPrizefond(Integer.parseInt(str.substring(str.indexOf("\"")+1,str.lastIndexOf("\""))));
+        return  league;
+    }
 }

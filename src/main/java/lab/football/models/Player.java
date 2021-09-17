@@ -72,4 +72,16 @@ public class Player {
     public void setClub_id(int club_id) {
         this.club_id = club_id;
     }
+
+    @Override
+    public String toString() {
+        return "Player{" + "\n" +
+                "id = " + id + "," + "\n" +
+                "name = '" + name + '\'' + "," + "\n" +
+                "sourname = '" + sourname + '\'' + "," + "\n" +
+                "number = " + number + "," + "\n" +
+                "mark = " + mark + "," +"\n" +
+                "club_id = " + club_id + "," + "\n" +
+                '}';
+    }
 }

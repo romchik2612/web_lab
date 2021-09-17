@@ -26,4 +26,18 @@ public class ClubMapper implements RowMapper<Club> {
 
         return club;
     }
+
+    public Club fromString(String str){
+        Club club = new Club();
+        str=str.substring(str.indexOf(":")+1);
+        club.setName(str.substring(str.indexOf("\"")+1,str.indexOf(",")-1));
+        str=str.substring(str.indexOf(":")+1);
+        club.setYear_of_birth(Integer.parseInt(str.substring(str.indexOf("\"")+1,str.indexOf(",")-1)));
+        str=str.substring(str.indexOf(":")+1);
+        club.setPoints(Integer.parseInt(str.substring(str.indexOf("\"")+1,str.indexOf(",")-1)));
+        str=str.substring(str.indexOf(":")+1);
+        System.out.println(str);
+        club.setLeague_id(Integer.parseInt(str.substring(str.indexOf("\"")+1,str.lastIndexOf("\""))));
+        return club;
+    }
 }

@@ -42,4 +42,14 @@ public class League {
     public void setPrizefond(int prizefond) {
         this.prizefond = prizefond;
     }
+
+    @Override
+    public String toString() {
+        return "League{" + "\n" +
+                "id = " + id + "," + "\n" +
+                "name = '" + name + '\'' + "," + "\n" +
+                "prizefond = " + prizefond + "\n" +
+                '}';
+    }
+
 }

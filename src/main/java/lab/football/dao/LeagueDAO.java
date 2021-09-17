@@ -30,6 +30,10 @@ public class LeagueDAO {
         jdbcTemplate.update("INSERT  INTO League VALUES(?,?,?) ", league.hashCode(),league.getName(),league.getPrizefond() );
     }
 
+    public void updateId( int id, String name){
+        jdbcTemplate.update("UPDATE League SET id=? WHERE name=?", id,name);
+    }
+
     public void update(int id, League updateLeague){
         jdbcTemplate.update("UPDATE League SET name=?,prizefond=? WHERE id=?",updateLeague.getName(),updateLeague.getPrizefond(),id);
     }

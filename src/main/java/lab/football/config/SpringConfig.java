@@ -21,6 +21,8 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 import javax.sql.DataSource;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 @Configuration
 @ComponentScan("lab.football")
@@ -57,12 +59,14 @@ public class SpringConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() throws URISyntaxException {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        String dbUrl = System.getenv("JDBC_DATABASE_URL");
-        String username = System.getenv("JDBC_DATABASE_USERNAME");
-        String password = System.getenv("JDBC_DATABASE_PASSWORD");
+        URI dbUri = new URI(System.getenv("DATABASE_URL"));
+
+        String username = dbUri.getUserInfo().split(":")[0];
+        String password = dbUri.getUserInfo().split(":")[1];
+        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
         dataSource.setUrl(dbUrl);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
@@ -71,15 +75,15 @@ public class SpringConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public JdbcTemplate jdbcTemplate(){
+    public JdbcTemplate jdbcTemplate() throws URISyntaxException {
         return new JdbcTemplate(dataSource());
     }
     @Bean
-    public LeagueDAO leagueDAO(){return new LeagueDAO(jdbcTemplate());}
+    public LeagueDAO leagueDAO() throws URISyntaxException {return new LeagueDAO(jdbcTemplate());}
     @Bean
-    public ClubDAO clubDAO(){return new ClubDAO(jdbcTemplate());}
+    public ClubDAO clubDAO() throws URISyntaxException {return new ClubDAO(jdbcTemplate());}
     @Bean
-    public PlayerDAO playerDAO(){return new PlayerDAO(jdbcTemplate());}
+    public PlayerDAO playerDAO() throws URISyntaxException {return new PlayerDAO(jdbcTemplate());}
     @Bean
     public StringHttpMessageConverter stringHttpMessageConverter(){return new StringHttpMessageConverter();}
 
